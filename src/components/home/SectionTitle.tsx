@@ -4,7 +4,9 @@ interface SectionTitleProps extends HtmlHTMLAttributes<HTMLHeadingElement> {}
 
 const SectionTitle: FC<SectionTitleProps> = ({ children, className }) => {
   return (
-    <h2 className="mt-3 mb-6 text-3xl text-slate-900 underline font-semibold underline-offset-4 text-center">
+    <h2
+      className={`mt-3 mb-6 text-3xl text-slate-900 underline font-semibold underline-offset-4 text-center ${className}`}
+    >
       {children}
     </h2>
   );
