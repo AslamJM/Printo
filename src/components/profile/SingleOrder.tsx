@@ -41,8 +41,11 @@ const SingleOrder: FC<SingleOrderProps> = ({
           <p className="text-teal-700 my-1">{address}</p>
         </div>
         <div className="flex">
-          <Button>Pay Now</Button>
-          <Button className="ml-2 bg-red-500 hover:bg-red-700 rounded-md">
+          <Button variant="default">Pay Now</Button>
+          <Button
+            variant="cancel"
+            className="ml-2 bg-red-500 hover:bg-red-700 rounded-md"
+          >
             Cancel
           </Button>
         </div>

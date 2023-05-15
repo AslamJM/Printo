@@ -25,7 +25,7 @@ const Contact = () => {
           <p className="my-2 text-lg text-slate-600">
             Visit our order page to place your orders
           </p>
-          <Button>Order Now</Button>
+          <Button variant="default">Order Now</Button>
         </div>
       </div>
     </div>

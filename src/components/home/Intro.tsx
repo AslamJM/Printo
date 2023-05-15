@@ -12,8 +12,12 @@ const Intro = () => {
           Make your first order now. Enjoy the amazing quality of our work.
         </p>
         <div className="mt-6 flex items-center">
-          <Button className="mr-2">Samples</Button>
-          <Button className="ml-2">Order</Button>
+          <Button variant="default" className="mr-2">
+            Samples
+          </Button>
+          <Button variant="default" className="ml-2">
+            Order
+          </Button>
         </div>
       </div>
       <div className="w-1/2 hidden md:flex items-center justify-center">

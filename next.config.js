@@ -7,6 +7,7 @@ const nextConfig = {
       "bit.ly",
       "th.bing.com",
       "uploadthing.com",
+      "files.stripe.com",
     ],
   },
   experimental: {

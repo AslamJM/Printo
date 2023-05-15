@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import Button from "../ui/Button";
@@ -6,7 +6,7 @@ import Button from "../ui/Button";
 interface ServicePageCardProps {
   title: string;
   description: string;
-  image: StaticImageData;
+  image: string;
   slug: string;
 }
 
@@ -34,7 +34,7 @@ const ServicePageCard: FC<ServicePageCardProps> = ({
       </div>
       <div className="py-2 flex items-center justify-center">
         <Link href={`/services/${slug}`}>
-          <Button>Learn More</Button>
+          <Button variant="default">Learn More</Button>
         </Link>
       </div>
     </div>

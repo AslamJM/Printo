@@ -1,9 +1,17 @@
 import React, { FC } from "react";
 import * as Select from "@radix-ui/react-select";
 import { useFormContext } from "@/context/FormContext";
+import axios from "axios";
+import useSWR from "swr";
+import { LoadingIcon } from "../Icons";
 
 interface SelectItemProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   value: string;
+}
+
+interface Option {
+  id: string;
+  name: string;
 }
 
 const SelectItem: FC<SelectItemProps> = ({ children, value, ...props }) => {
@@ -20,6 +28,16 @@ const SelectItem: FC<SelectItemProps> = ({ children, value, ...props }) => {
 
 const SelectComponent = () => {
   const { setCategory } = useFormContext();
+
+  const fetcher = async () => {
+    const { data } = await axios.get<{ categories: Option[] }>(
+      "/api/stripe/categories"
+    );
+    return data;
+  };
+
+  const { data, isLoading, error } = useSWR("/api/stripe/categories", fetcher);
+
   return (
     <div className="w-xl mb-3">
       <Select.Root onValueChange={(e) => setCategory(e)}>
@@ -29,10 +47,25 @@ const SelectComponent = () => {
         <Select.Portal>
           <Select.Content className="w-full ">
             <Select.Viewport className="rounded-xl w-full bg-white p-4 shadow-sm">
-              <SelectItem value="t-shirt">T-Shirt</SelectItem>
-              <SelectItem value="mug">Mug</SelectItem>
-              <SelectItem value="banner">Banner</SelectItem>
-              <SelectItem value="brochure">Brochure</SelectItem>
+              {isLoading && (
+                <div className="flex items-center justify-center w-full h-full">
+                  <LoadingIcon />
+                </div>
+              )}
+              {error && (
+                <div className="flex items-center justify-center w-full h-full">
+                  error fetching categories
+                </div>
+              )}
+              {data && (
+                <>
+                  {data.categories.map((opt) => (
+                    <SelectItem key={opt.id} value={opt.id}>
+                      {opt.name}
+                    </SelectItem>
+                  ))}
+                </>
+              )}
             </Select.Viewport>
           </Select.Content>
         </Select.Portal>

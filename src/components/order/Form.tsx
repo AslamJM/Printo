@@ -8,6 +8,7 @@ import { generateReactHelpers } from "@uploadthing/react";
 import { useFormContext } from "@/context/FormContext";
 import { supabaseAdmin } from "@/utils/supabase";
 import { useUser } from "@clerk/nextjs";
+import { checkout } from "@/utils/checkout";
 
 const { useUploadThing } = generateReactHelpers<FileUploadRouter>();
 
@@ -22,7 +23,7 @@ const Form = () => {
   const { getRootProps, getInputProps, files, startUpload } =
     useUploadThing("imageUploader");
 
-  const { address, category } = useFormContext();
+  const { address, category, setAddress, setCategory } = useFormContext();
   const { user } = useUser();
 
   const uploadImage = async () => {
@@ -30,21 +31,25 @@ const Form = () => {
 
     try {
       setIsLoading(true);
-      const res = await startUpload();
-      const fileUrls = res.map((rs) => rs.fileUrl);
-      const { data } = await supabaseAdmin.from("orders").insert([
-        {
-          userId: user?.id || "anonymous",
-          category,
-          address,
-          images: fileUrls,
-          paymentId: "",
-        },
-      ]);
-      console.log(data);
+      // const res = await startUpload();
+      // const fileUrls = res.map((rs) => rs.fileUrl);
+      // const { data } = await supabaseAdmin.from("orders").insert([
+      //   {
+      //     userId: user?.id || "anonymous",
+      //     category,
+      //     address,
+      //     images: fileUrls,
+      //     paymentId: "",
+      //     status: "pending payment",
+      //   },
+      // ]);
+      // console.log(data);
+      checkout({ line_items: [{ price: category, quantity: 1 }] });
     } catch (error: any) {
       console.log(error.message);
     } finally {
+      setCategory("");
+      setAddress("");
       setIsLoading(false);
     }
   };
@@ -62,16 +67,17 @@ const Form = () => {
       <FormInput />
       <div className="py-1 flex items-center justify-center">
         <Button
-          disabled={
-            files.length === 0 ||
-            address.length === 0 ||
-            category == "" ||
-            isLoading
-          }
+          variant="default"
+          // disabled={
+          //   files.length === 0 ||
+          //   address.length === 0 ||
+          //   category == "" ||
+          //   isLoading
+          // }
           onClick={() => uploadImage()}
           isLoading={isLoading}
         >
-          Place Order
+          Place Order & Checkout
         </Button>
       </div>
     </div>
