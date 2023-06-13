@@ -1,5 +1,7 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
-import { FC } from "react";
+import { FC, useState } from "react";
 import { DropzoneInputProps, FileWithPath } from "react-dropzone";
 import { CloseIcon, UploadIcon } from "../Icons";
 
@@ -43,6 +45,7 @@ const Dropzone: FC<DropzoneProps> = ({
   getInputProps,
   files: acceptedFiles,
 }) => {
+  const [imgs, setImgs] = useState(acceptedFiles);
   return (
     <>
       <div className="mb-3">
@@ -52,7 +55,7 @@ const Dropzone: FC<DropzoneProps> = ({
             <p className="mb-2  text-teal-500">
               Click to upload or drag and drop
             </p>
-            <p className="mb-2  text-teal-400">{`uploaded ${acceptedFiles.length} images`}</p>
+            <p className="mb-2  text-teal-400">{`uploaded ${imgs.length} images`}</p>
           </div>
           <input
             id="dropzone"
@@ -64,11 +67,11 @@ const Dropzone: FC<DropzoneProps> = ({
       </div>
       {
         <div className="flex items-center">
-          {acceptedFiles.map((file, index) => (
+          {imgs.map((file, index) => (
             <ImagePreview
               src={URL.createObjectURL(file.file)}
               key={file.file.name}
-              onCLose={() => acceptedFiles.splice(index, 1)}
+              onCLose={() => setImgs((prev) => prev.splice(index, 1))}
             />
           ))}
         </div>

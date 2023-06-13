@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      images: data,
+      images: data ?? [],
     },
   };
 };

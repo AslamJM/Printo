@@ -12,7 +12,7 @@ const ProfilePage = ({
       {orders.map((order) => (
         <SingleOrder
           key={order.id}
-          category={order.category!}
+          date={order.created_at!}
           address={order.address!}
           images={order.images!}
           status={order.status!}

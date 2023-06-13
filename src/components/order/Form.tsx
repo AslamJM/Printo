@@ -23,7 +23,14 @@ const Form = () => {
   const { getRootProps, getInputProps, files, startUpload } =
     useUploadThing("imageUploader");
 
-  const { address, category, setAddress, setCategory } = useFormContext();
+  const {
+    address,
+    category,
+    setAddress,
+    setCategory,
+    description,
+    setDescription,
+  } = useFormContext();
   const { user } = useUser();
 
   const uploadImage = async () => {
@@ -31,49 +38,53 @@ const Form = () => {
 
     try {
       setIsLoading(true);
-      // const res = await startUpload();
-      // const fileUrls = res.map((rs) => rs.fileUrl);
-      // const { data } = await supabaseAdmin.from("orders").insert([
-      //   {
-      //     userId: user?.id || "anonymous",
-      //     category,
-      //     address,
-      //     images: fileUrls,
-      //     paymentId: "",
-      //     status: "pending payment",
-      //   },
-      // ]);
-      // console.log(data);
+      const res = await startUpload();
+      const fileUrls = res.map((rs) => rs.fileUrl);
+      const { data } = await supabaseAdmin.from("orders").insert([
+        {
+          userId: user?.id || "anonymous",
+          category,
+          address,
+          images: fileUrls,
+          paymentId: "",
+          status: "pending payment",
+          description,
+        },
+      ]);
+      console.log(data);
       checkout({ line_items: [{ price: category, quantity: 1 }] });
     } catch (error: any) {
       console.log(error.message);
     } finally {
       setCategory("");
       setAddress("");
+      setDescription("");
       setIsLoading(false);
     }
   };
 
   return (
     <div
-      className="bg-white px-6 py-6 w-full md:w-1/2 rounded-md"
+      className="bg-white px-6 py-6 w-full md:w-1/2 rounded-md shadow-sm"
       {...getRootProps()}
     >
       <FormLabel label="Select the printing category" />
       <SelectComponent />
       <FormLabel label="Upload the design" />
       <Dropzone getInputProps={getInputProps} files={files} />
+      <FormLabel label="Order Description" />
+      <FormInput name="description" />
       <FormLabel label="Delivery Address" />
-      <FormInput />
+      <FormInput name="address" />
       <div className="py-1 flex items-center justify-center">
         <Button
           variant="default"
-          // disabled={
-          //   files.length === 0 ||
-          //   address.length === 0 ||
-          //   category == "" ||
-          //   isLoading
-          // }
+          disabled={
+            files.length === 0 ||
+            address.length === 0 ||
+            category == "" ||
+            isLoading
+          }
           onClick={() => uploadImage()}
           isLoading={isLoading}
         >

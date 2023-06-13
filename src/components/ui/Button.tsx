@@ -4,7 +4,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/functions";
 
 export const buttonVariants = cva(
-  "px-6 py-3 text-slate-50 border-[1px] flex items-center justify-center rounded-md disabled:bg-teal-50 disabled:text-teal-400 disabled:border-teal-400",
+  "px-6 py-3 text-slate-50 border-[1px] flex items-center justify-center rounded-md disabled:bg-teal-50 disabled:text-teal-400 disabled:border-teal-400 disabled:text-slate-500",
   {
     variants: {
       variant: {

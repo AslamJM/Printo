@@ -3,23 +3,23 @@ import Image from "next/image";
 import Button from "../ui/Button";
 
 interface SingleOrderProps {
-  category: string;
+  date: string;
   address: string;
   images: string[];
   status: string;
 }
 
 const SingleOrder: FC<SingleOrderProps> = ({
-  category,
+  date,
   address,
   images,
   status,
 }) => {
   return (
-    <div className=" px-6 py-4 bg-white w-full md:w-[600px] lg:w-[800px] rounded-md my-1">
+    <div className=" px-6 py-4 bg-white w-full md:w-[600px] lg:w-[800px] rounded-md my-2 shadow-sm">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold mb-2 text-teal-900">
-          {category} Printing
+        <h3 className="text-sm md:text-md lg:text-lg font-semibold mb-2 text-teal-900">
+          {new Date(date).toDateString()}
         </h3>
         <StatusCard status={status} />
       </div>
@@ -28,8 +28,8 @@ const SingleOrder: FC<SingleOrderProps> = ({
           <Image
             src={image}
             alt="order"
-            width={180}
-            height={180}
+            width={140}
+            height={100}
             className="object-cover rounded-md m-1"
             key={`image-${i}`}
           />
@@ -56,7 +56,7 @@ const SingleOrder: FC<SingleOrderProps> = ({
 
 const StatusCard = ({ status }: { status: string }) => {
   return (
-    <div className="py-1 px-3 rounded-lg bg-teal-50 border-[1px] border-teal-700 flex items-center justify-center   text-teal-900 italic">
+    <div className="py-1 px-3 rounded-lg text-sm md:text-base bg-teal-50 border-[1px] border-teal-700 flex items-center justify-center   text-teal-900 italic">
       {status}
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer } from "react";
 
 interface FormAction {
-  type: "SET_CATEGORY" | "SET_FILE_URLS" | "SET_ADDRESS";
+  type: "SET_CATEGORY" | "SET_FILE_URLS" | "SET_ADDRESS" | "SET_DESCRIPTION";
   payload: any;
 }
 
@@ -9,18 +9,22 @@ interface FormState {
   category: string;
   fileUrls: string[];
   address: string;
+  description: string;
   setCategory: (value: string) => void;
   setFileUrls: (value: string[]) => void;
   setAddress: (value: string) => void;
+  setDescription: (value: string) => void;
 }
 
 const initialState: FormState = {
   category: "",
   fileUrls: [],
   address: "",
+  description: "",
   setAddress: () => {},
   setCategory: () => {},
   setFileUrls: () => {},
+  setDescription: () => {},
 };
 
 const formContext = createContext(initialState);
@@ -38,6 +42,8 @@ const formReducer = (state: FormState, action: FormAction): FormState => {
       return { ...state, category: action.payload };
     case "SET_FILE_URLS":
       return { ...state, fileUrls: action.payload };
+    case "SET_DESCRIPTION":
+      return { ...state, description: action.payload };
     default:
       return state;
   }
@@ -55,11 +61,15 @@ function useFormReducer() {
   const setAddress = (value: string) => {
     dispatch({ type: "SET_ADDRESS", payload: value });
   };
+  const setDescription = (value: string) => {
+    dispatch({ type: "SET_DESCRIPTION", payload: value });
+  };
   return {
     ...state,
     setAddress,
     setCategory,
     setFileUrls,
+    setDescription,
   };
 }
 

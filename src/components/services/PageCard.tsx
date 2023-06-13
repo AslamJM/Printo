@@ -17,7 +17,7 @@ const ServicePageCard: FC<ServicePageCardProps> = ({
   slug,
 }) => {
   return (
-    <div className="w-full   rounded-lg p-3 bg-white">
+    <div className="w-full   rounded-lg p-3 bg-white shadow-sm">
       <div className="h-[200px] relative">
         <Image
           src={image}

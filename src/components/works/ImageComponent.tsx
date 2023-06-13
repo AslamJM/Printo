@@ -14,7 +14,7 @@ function cn(...classes: string[]) {
 const ImageComponent: FC<ImageComponentProps> = ({ src, name, date }) => {
   const [isLoading, setIsLoading] = useState(true);
   return (
-    <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden  xl:aspect-w-7 xl:aspect-h-8 group">
+    <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden  xl:aspect-w-7 xl:aspect-h-8 group shadow-sm">
       <Image
         alt={name}
         src={src}
@@ -27,10 +27,12 @@ const ImageComponent: FC<ImageComponentProps> = ({ src, name, date }) => {
         )}
         onLoadingComplete={() => setIsLoading(false)}
       />
-      <h3 className="mt-1 text-lg text-gray-700 group-hover:font-semibol">
+      <h3 className="mt-1 ml-2 text-lg text-gray-700 group-hover:font-semibold">
         {name}
       </h3>
-      <p className="mt-8 text-sm font-medium text-gray-700">{date}</p>
+      <p className="mt-8 ml-2 text-sm font-medium text-gray-700 group-hover:font-semibold">
+        {date}
+      </p>
     </div>
   );
 };

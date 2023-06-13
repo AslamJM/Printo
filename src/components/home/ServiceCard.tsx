@@ -16,7 +16,7 @@ const ServiceCard: FC<ServiceCardProps> = ({
   slug,
 }) => {
   return (
-    <div className="px-4 py-3  bg-white rounded-lg ">
+    <div className="px-4 py-3  bg-white rounded-lg shadow-sm ">
       <div className="flex items-center h-[200px] justify-center w-full  relative">
         <Image
           src={image}
@@ -26,10 +26,10 @@ const ServiceCard: FC<ServiceCardProps> = ({
           style={{ objectFit: "cover" }}
         />
       </div>
-      <h3 className="text-center my-2 text-2xl text-slate-800 font-semibold">
+      <h3 className="text-center my-2 text-md md:text-xl xl:text-2xl text-slate-800 font-semibold">
         {title}
       </h3>
-      <p className=" text-slate-700 text-base">{description}</p>
+      <p className=" text-slate-700 text-sm md:text-base">{description}</p>
       <div className="my-2 flex items-center justify-between px-2">
         <Link
           href="/services"

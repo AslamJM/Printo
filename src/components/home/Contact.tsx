@@ -13,7 +13,7 @@ const Contact = () => {
       </p>
       <div className="w-full block md:flex items-center mt-6">
         <div className="w-full md:w-1/2">
-          <h3 className="mb-3 text-lg text-slate-900 font-semibold">
+          <h3 className="mb-3 text-md md:text-lg text-center md:text-left text-slate-900 font-semibold">
             Want to get something printed?
           </h3>
           <OrderStep step="Choose a printing style" />
@@ -22,10 +22,12 @@ const Contact = () => {
           <OrderStep step="Complete the payment" />
         </div>
         <div className="w-full md:w-1/2">
-          <p className="my-2 text-lg text-slate-600">
+          <p className="my-2 text-md md:text-lg text-center md:text-left text-slate-600">
             Visit our order page to place your orders
           </p>
-          <Button variant="default">Order Now</Button>
+          <Button variant="default" className="mx-auto sm:mx-0">
+            Order Now
+          </Button>
         </div>
       </div>
     </div>
