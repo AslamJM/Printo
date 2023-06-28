@@ -10,7 +10,7 @@ const OrderStep: FC<OrderStepProps> = ({ step }) => {
   return (
     <div className="w-full flex items-center  my-2 py-1">
       <StepperIcon />
-      <p className="ml-2 text-slate-600 text-md md:text-lg ">{step}</p>
+      <p className="ml-2 text-slate-600 text-md md:text-base ">{step}</p>
     </div>
   );
 };

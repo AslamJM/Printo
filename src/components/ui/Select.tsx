@@ -4,6 +4,8 @@ import { useFormContext } from "@/context/FormContext";
 import axios from "axios";
 import useSWR from "swr";
 import { LoadingIcon } from "../Icons";
+import { Inconsolata } from "next/font/google";
+import { cn } from "@/utils/functions";
 
 interface SelectItemProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   value: string;
@@ -14,11 +16,16 @@ interface Option {
   name: string;
 }
 
+const inter = Inconsolata({ subsets: ["latin"], variable: "--font-inc" });
+
 const SelectItem: FC<SelectItemProps> = ({ children, value, ...props }) => {
   return (
     <Select.Item
       value={value}
-      className="px-2 py-1 text-[16px] cursor-pointer hover:bg-teal-50 rounded-md w-full "
+      className={cn(
+        "px-2 py-1 text-[16px] cursor-pointer hover:bg-teal-50 rounded-md w-full",
+        inter.className
+      )}
       {...props}
     >
       <Select.ItemText>{children}</Select.ItemText>

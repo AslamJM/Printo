@@ -43,9 +43,9 @@ const Navbar = () => {
         {isSignedIn ? (
           <ProfileMenu />
         ) : (
-          <Button>
-            <Link href="/sign-in">Sign In</Link>
-          </Button>
+          <Link href="/sign-in">
+            <Button variant="default"> Sign In</Button>
+          </Link>
         )}
       </div>
     </div>

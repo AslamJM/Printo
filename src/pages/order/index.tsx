@@ -5,12 +5,15 @@ import React from "react";
 import FormContextProvider from "@/context/FormContext";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
+import { Inconsolata } from "next/font/google";
+
+const inter = Inconsolata({ subsets: ["latin"], variable: "--font-inc" });
 
 const OrderPage = () => {
   const { isSignedIn } = useUser();
   return (
     <FormContextProvider>
-      <div>
+      <div className={inter.className}>
         <Heading className="my-16 text-center hidden md:block">
           Make Your Order
         </Heading>

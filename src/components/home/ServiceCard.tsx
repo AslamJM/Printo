@@ -29,7 +29,9 @@ const ServiceCard: FC<ServiceCardProps> = ({
       <h3 className="text-center my-2 text-md md:text-xl xl:text-2xl text-slate-800 font-semibold">
         {title}
       </h3>
-      <p className=" text-slate-700 text-sm md:text-base">{description}</p>
+      <p className=" text-slate-700 text-sm md:text-base font-inc">
+        {description}
+      </p>
       <div className="my-2 flex items-center justify-between px-2">
         <Link
           href="/services"

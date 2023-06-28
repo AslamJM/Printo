@@ -13,12 +13,12 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
   description,
 }) => {
   return (
-    <div className="px-4 py-3  bg-white  rounded-lg shadow-sm">
+    <div className="px-4 py-5  bg-white  rounded-lg shadow-sm">
       <div className="flex items-center">
         <div className="h-12 w-12 bg-slate-700 rounded-full"></div>
         <div className="ml-3">
-          <h4 className="font-semibold text:md md:text-xl">{name}</h4>
-          <p className="text-sm md:text-lg text-slate-600">{description}</p>
+          <h4 className="font-semibold text:md md:text-base">{name}</h4>
+          <p className="text-sm md:text-base text-slate-500">{description}</p>
         </div>
       </div>
       <div className="h-[1px] my-2 bg-teal-900 w-full" />

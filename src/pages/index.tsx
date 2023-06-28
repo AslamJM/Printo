@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Inconsolata } from "next/font/google";
 
 import Intro from "@/components/home/Intro";
 import Services from "@/components/home/Services";
@@ -6,7 +6,7 @@ import Works from "@/components/works";
 import Testimonials from "@/components/testimonials";
 import Contact from "@/components/home/Contact";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inconsolata({ subsets: ["latin"], variable: "--font-inc" });
 
 export default function Home() {
   return (
